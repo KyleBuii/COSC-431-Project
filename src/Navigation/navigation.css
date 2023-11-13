@@ -5,12 +5,30 @@
     font-family: 'Josefin Sans', sans-serif;
 }
 
+.body{
+    /* width: 100%;
+    height: 100vh; */
+    margin: 0;
+    padding: 0;
+    background-color: #291763;
+    background-image: linear-gradient(315deg, #291763 0%,
+    #291763 74%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
 .hero {
-    height: 100vh; 
+    position: fixed;
+    top: 0;
+    height: 6em;
+    /* height: 100vh;  */
     width: 100%;
     background-color: orange;
     background-image: linear-gradient(315deg, #291763 0%, /*2 values control left and right side of page color*/
-    #291763 74%); 
+    #291763 74%);
+    z-index: 1;
 }
 
 nav {

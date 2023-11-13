@@ -6,16 +6,19 @@ body{
     background-color: #291763;
     background-image: linear-gradient(315deg, #291763 0%,
     #291763 74%);
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     user-select: none;
 }
 
-main{
+.main{
     width: auto;
     height: auto;
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .line-1{
