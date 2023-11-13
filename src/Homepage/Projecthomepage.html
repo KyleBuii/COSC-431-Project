@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Combined Search Bar and Navigation Bar</title>
+    <link rel="stylesheet" href="Projectsearchbar.css">
+    <link rel="stylesheet" type="text/css" href="Projectnavbar.css">
+</head>
+<body>
+    <div class="hero">
+        <nav>
+            <h2 class="logo">The Harmonic<span>Vault</span></h2>
+            <ul>
+                <li><a href="Projecthomepage.html">Home</a></li>
+                <li><a href="create.html">Create</a></li>
+                <li><a href="browse.html">Browse</a></li>
+                <li><a href="learn.html">Learn</a></li>
+            </ul>
+            <!--<button type="button">Register</button>-->
+            <button type="button">Sign In</button>
+        </nav>
+    </div>
+
+    <main>
+        <input type="text" class="search"/>
+        <div class="line-1"></div>
+        <div class="line-2"></div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.search').click(function(){
+                $('.search').addClass('active');
+                $('.line-1').css({      
+                    'transform': 'rotate(45deg)',
+                    'top': '0px',
+                    'left':'0px'
+                });  
+                $('.line-2').css({
+                    'height': '40px',
+                    'opacity': '1'
+                });
+            });
+
+            $('.line-1, .line-2').click(function(){
+                $('.search').removeClass('active').val('');
+                $('.line-1').css({      
+                    'transform': 'rotate(-45deg)',
+                    'top': '-20px',
+                    'left':'45px'
+                });  
+                $('.line-2').css({
+                    'height': '0px',
+                    'opacity': '0'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
