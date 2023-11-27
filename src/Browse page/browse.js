@@ -14,50 +14,18 @@ const songColors = {
     "edm": "white"
 };
 
-class Browse extends Component{
-    createCard(_whatType, _name, _genre){
-        /// Temporary variables (eventually will use a database)
-        const tempImg = document.createElement("img");
-        tempImg.src = require("./covers/no_title.jpg");
-        tempImg.className = "image-song";
-        const tempImgAlbum = document.createElement("img");
-        tempImgAlbum.src = require("./covers/no_title+.jpg");
-        tempImgAlbum.className = "image-album";
-        const tempAudio = new Audio("https://upload.wikimedia.org/wikipedia/commons/1/15/Bicycle-bell.wav");
-        const tempSongs = {
-            "No title": {
-                "album": "No title+",
-                "image": tempImg,
-                "artist": "Reol",
-                "duration": "4:12",
-                "price": "0.01",
-                "genre": "pop",
-                "owners": "1",
-                "audio": tempAudio
-            }
-        };
-        const tempAlbums = {
-            "No title+": {
-                "image": tempImgAlbum,
-                "artist": "Reol",
-                "duration": "25:38",
-                "songs": {
-                    "Hibikase": "4:11",
-                    "Ooedo Ranvu": "3:01",
-                    "drop pop candy": "3:45",
-                    "No title": "4:04",
-                    "Echo": "3:33",
-                    "Asymmetry": "4:16",
-                    "Gigantic O.T.N": "3:28"
-                },
-                "price": "0.07",
-                "genre": "pop"
-            }
-        };
+const collections = {
+    "0xf201894ae8b9fa32cdA417389A87095EA134E8c5": "wvrps-by-warpsound",
+    "0x63A934da457E9D19Cdc4a6016961b6D571944818": "fvck-avatar-essence"
+};
 
+class Browse extends Component{
+    createCard(_whatType, _item, _genre){
         const divCard = document.createElement("div");
         const divCardFront = document.createElement("div");
         const divCardBack = document.createElement("div");
+        const divCardBackList = document.createElement("div");
+        const img = document.createElement("img");
         /// If the card is an album or song
         switch(_whatType){
             case "album":
@@ -66,29 +34,25 @@ class Browse extends Component{
                 divCardBack.className = "card-album back " + songColors[_genre];
                 const divSideBar = document.createElement("div");
                 divSideBar.className = "card-album-side-bar";
-                divSideBar.innerHTML += `
-                    <em>${tempAlbums[_name].artist}</em>
-                    <p>${_name}</p>
-                `;
-                divCardFront.appendChild(divSideBar);
-                divCardFront.appendChild(tempAlbums[_name].image);
-                divCard.appendChild(divCardFront);
-                const divCardBackSongList = document.createElement("div");
-                divCardBackSongList.className = "card-album-song-list";
-                for(const i in tempAlbums[_name].songs){
-                    const divTemp = document.createElement("div");
-                    divTemp.className = "space-evenly";
-                    divTemp.innerHTML = `
-                        <p>${i}</p>
-                        <p>${tempAlbums[_name].songs[i]}</p>
-                    `;
-                    divCardBackSongList.appendChild(divTemp);
+                const pAlbumName = document.createElement("p");
+                if(_item["collection"].name.length >= 26){
+                    pAlbumName.innerHTML = _item["collection"].name.slice(0, 26) + "...";
+                }else{
+                    pAlbumName.innerHTML = _item["collection"].name;   
                 };
-                divCardBack.appendChild(divCardBackSongList);
-                const label = document.createElement("p");
-                label.className = "label-total-duration";
-                label.innerHTML = tempAlbums[_name].duration;
-                divCardBack.appendChild(label);
+                divSideBar.appendChild(pAlbumName);
+                divCardFront.appendChild(divSideBar);
+                img.src = _item["collection"].image_url;
+                img.className = "image-album";        
+                divCardFront.appendChild(img);
+                divCard.appendChild(divCardFront);
+                divCardBackList.className = "card-album-list";
+                divCardBackList.innerHTML = `
+                    <p>Total volume: ${Math.round(_item["collection"]["stats"].total_volume)} ETH</p>
+                    <p>Owners: ${_item["collection"]["stats"].num_owners}</p>
+                    <p>Floor price: ${Math.round(_item["collection"]["stats"].floor_price * 10000)/10000} ETH</p>
+                `;
+                divCardBack.appendChild(divCardBackList);
                 divCard.appendChild(divCardBack);
                 divCard.onclick = () => {
                     divCard.classList.toggle("flipped");
@@ -102,9 +66,12 @@ class Browse extends Component{
                 const iconPlayPause = document.createElement("img");
                 iconPlayPause.src = require("./icons/play.png");
                 iconPlayPause.className = "icon-song";
+                const audio = new Audio(_item.animation_url);
+                audio.addEventListener("ended", function(){
+                    iconPlayPause.src = iconPlayPause.src = require("./icons/play.png");
+                });
                 iconPlayPause.onclick = (e) => {
                     e.stopPropagation();
-                    const audio = tempSongs[_name].audio;
                     if(audio){
                         if(audio.paused){
                             iconPlayPause.src = require("./icons/pause.png");
@@ -115,19 +82,27 @@ class Browse extends Component{
                         };
                     };
                 };
-                divCardFront.appendChild(tempSongs[_name].image);
+                img.src = _item.image_url;
+                img.className = "image-song";        
+                divCardFront.appendChild(img);
                 divCardFront.innerHTML += `
-                    <p>${_name}</p>
-                    <em>${tempSongs[_name].artist}</em>
-                    <p>${tempSongs[_name].duration}</p>
+                    <p>${_item.name}</p>
                 `;
+                for(const i in _item["traits"]){
+                    if(_item["traits"][i].trait_type === "Artist"){
+                        divCardFront.innerHTML += `
+                            <p>${_item["traits"][i].value}</p>
+                        `;
+                    };
+                };
                 divCardFront.appendChild(iconPlayPause);
                 divCard.appendChild(divCardFront);
-                divCardBack.innerHTML = `
-                    <p>Album: ${tempSongs[_name].album}</p>
-                    <p>Price: ${tempSongs[_name].price} ETH</p>
-                    <p>Owners: ${tempSongs[_name].owners}</p>
+                divCardBackList.className = "card-song-list";
+                divCardBackList.innerHTML = `
+                    <p>Album: ${_item["collection"].name}</p>
+                    <p>Creator: ${_item["creator"]["user"].username}</p>
                 `;
+                divCardBack.appendChild(divCardBackList);
                 divCard.appendChild(divCardBack);
                 divCard.onclick = () => {
                     divCard.classList.toggle("flipped");
@@ -138,10 +113,26 @@ class Browse extends Component{
                 break;
         };
     };
-    componentDidMount(){
-        for(const i in songColors){
-            this.createCard("song", "No title", i);
-            this.createCard("album", "No title+", i);
+    async componentDidMount(){
+        /// Get random NFTs
+        const options = {
+            method: 'GET',
+            headers: {accept: 'application/json', 'X-API-KEY': process.env.REACT_APP_OPEN_SEA_API_KEY}
+        };
+        try{
+            for(const i in collections){
+                const responseCollection = await fetch("https://api.opensea.io/api/v1/collection/" + collections[i], options);
+                const resultCollection = await responseCollection.json();
+                this.createCard("album", resultCollection, "jazz");
+                const responseSong = await fetch("https://api.opensea.io/api/v1/assets?owner=" + i + "&collection=" + collections[i] + "&limit=20&include_orders=false", options);
+                const resultSong = await responseSong.json();
+                const songColorKeys = Object.keys(songColors);
+                for(const i in resultSong["assets"]){
+                    this.createCard("song", resultSong["assets"][i], songColorKeys[Math.floor(Math.random()*songColorKeys.length)]);
+                };
+            };
+        }catch(err){
+            console.error(err);
         };
     };
     render(){
