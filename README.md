@@ -4,7 +4,7 @@ Final project for our Cryptocurrencies & Blockchain (COSC 431) class. The overal
 
 
 ## Features
-
+- Browse and listen to music NFTs
 
 ## Node Modules
 - jquery
