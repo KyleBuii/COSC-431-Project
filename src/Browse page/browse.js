@@ -67,8 +67,18 @@ class Browse extends Component{
                 iconPlayPause.src = require("./icons/play.png");
                 iconPlayPause.className = "icon-song";
                 const audio = new Audio(_item.animation_url);
+                audio.preload = "metadata";
                 audio.addEventListener("ended", function(){
                     iconPlayPause.src = iconPlayPause.src = require("./icons/play.png");
+                    var minutes = Math.floor(audio.duration / 60);
+                    var seconds = Math.floor(audio.duration % 60);
+                    if(minutes < 10){
+                        minutes = "0" + minutes;
+                    };
+                    if(seconds < 10){
+                        seconds = "0" + seconds;
+                    };
+                    pAudioDuration.innerHTML = minutes + ":" + seconds;
                 });
                 iconPlayPause.onclick = (e) => {
                     e.stopPropagation();
@@ -91,10 +101,35 @@ class Browse extends Component{
                 for(const i in _item["traits"]){
                     if(_item["traits"][i].trait_type === "Artist"){
                         divCardFront.innerHTML += `
-                            <p>${_item["traits"][i].value}</p>
+                            <em>${_item["traits"][i].value}</em>
                         `;
                     };
                 };
+                const pAudioDuration = document.createElement("p");
+                audio.onloadedmetadata = () => {
+                    var minutes = Math.floor(audio.duration / 60);
+                    var seconds = Math.floor(audio.duration % 60);
+                    if(minutes < 10){
+                        minutes = "0" + minutes;
+                    };
+                    if(seconds < 10){
+                        seconds = "0" + seconds;
+                    };
+                    pAudioDuration.innerHTML = minutes + ":" + seconds;
+                };
+                audio.addEventListener("timeupdate", function(){
+                    const timeLeft = audio.duration - audio.currentTime;
+                    var minutes = Math.floor(timeLeft / 60);
+                    var seconds = Math.floor(timeLeft % 60);
+                    if(minutes < 10){
+                        minutes = "0" + minutes;
+                    };
+                    if(seconds < 10){
+                        seconds = "0" + seconds;
+                    };
+                    pAudioDuration.innerHTML = minutes + ":" + seconds;
+                });
+                divCardFront.appendChild(pAudioDuration);
                 divCardFront.appendChild(iconPlayPause);
                 divCard.appendChild(divCardFront);
                 divCardBackList.className = "card-song-list";
