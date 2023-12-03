@@ -28,7 +28,7 @@
     background-color: orange;
     background-image: linear-gradient(315deg, #291763 0%, /*2 values control left and right side of page color*/
     #291763 74%);
-    z-index: 1;
+    z-index: 2;
 }
 
 nav {

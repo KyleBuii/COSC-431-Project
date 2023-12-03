@@ -8,5 +8,6 @@ Final project for our Cryptocurrencies & Blockchain (COSC 431) class. The overal
 
 ## Node Modules
 - jquery
+- react-icons
 - react-router-dom
 - sass

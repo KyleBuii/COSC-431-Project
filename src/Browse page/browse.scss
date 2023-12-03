@@ -73,15 +73,6 @@
     margin: 8rem 0rem;
 }
 
-.space-evenly{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    p{
-        margin: 0;
-    }
-}
-
 .card{
     position: relative;
     top: 0;
@@ -173,8 +164,52 @@
     margin: 0.7rem 0rem 0rem;
 }
 
+.button-help{
+    all: unset;
+    margin-right: 0.5rem;
+    &:active{
+        color: rgba(255, 255, 255, 0.8);
+        transform: scale(1.2);
+    }
+}
+
 .label-section{
     color: white;
     margin: 2rem 7rem 0rem;
     border-bottom: 4px solid white;
+    &.with-button{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+#songs-help-popup{
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 9em);
+    visibility: hidden;
+    position: absolute;
+    background-color: white;
+    border-radius: 20px;
+    right: 1rem;
+    border: 2px solid black;
+    padding: 1rem;
+}
+
+.square-colored{
+    @extend %colors;
+    height: 1em;
+    width: 1em;
+    border: 1px solid black;
+}
+
+.container-genre{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75em;
+    width: 7rem;
+    margin: 0.2rem 1rem;
 }

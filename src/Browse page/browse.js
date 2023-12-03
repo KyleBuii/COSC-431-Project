@@ -1,5 +1,7 @@
 import "./browse.scss";
 import { Component } from 'react';
+import { IconContext } from 'react-icons';
+import { FaQuestionCircle } from "react-icons/fa";
 
 const songColors = {
     "jazz": "light-blue",
@@ -20,6 +22,13 @@ const collections = {
 };
 
 class Browse extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            songsPopup: false
+        };
+        this.handlePopup = this.handlePopup.bind(this);
+    };
     createCard(_whatType, _item, _genre){
         const divCard = document.createElement("div");
         const divCardFront = document.createElement("div");
@@ -148,6 +157,18 @@ class Browse extends Component{
                 break;
         };
     };
+    handlePopup(){
+        this.setState(prevState => ({
+            songsPopup: !prevState.songsPopup
+        }), () => {
+            const popup = document.getElementById("songs-help-popup");
+            if(this.state.songsPopup === false){
+                popup.style.visibility = "hidden";
+            }else{
+                popup.style.visibility = "visible";
+            };
+        });
+    };
     async componentDidMount(){
         /// Get random NFTs
         const options = {
@@ -169,6 +190,28 @@ class Browse extends Component{
         }catch(err){
             console.error(err);
         };
+        /// Create songs help popup
+        const e = document.getElementById("songs-help-popup");
+        e.onclick = () => {
+            this.setState({
+                songsPopup: false
+            }, () => {
+                e.style.visibility = "hidden";     
+            });
+        };
+        for(const i in songColors){
+            const containerGenre = document.createElement("div");
+            containerGenre.className = "container-genre";
+            /// Genre name
+            const genre = document.createElement("p");
+            genre.innerHTML = i.slice(0, 1).toUpperCase() + i.slice(1);
+            /// Genre color
+            const genreColor = document.createElement("div");
+            genreColor.className = "square-colored " + songColors[i];
+            containerGenre.appendChild(genre);
+            containerGenre.appendChild(genreColor);
+            e.appendChild(containerGenre);
+        };
     };
     render(){
         return(
@@ -176,7 +219,16 @@ class Browse extends Component{
                 <div id="panel-featured"></div>
                 <h1 className="label-section">Albums</h1>
                 <div id="catalog-albums"></div>
-                <h1 className="label-section">Songs</h1>
+                <div className="label-section with-button">
+                    <h1>Songs</h1>
+                    <button className="button-help"
+                        onClick={this.handlePopup}>
+                        <IconContext.Provider value={{ size: "1rem", className: "global-class-name" }}>
+                            <FaQuestionCircle/>
+                        </IconContext.Provider>
+                    </button>
+                </div>
+                <div id="songs-help-popup"></div>
                 <div id="catalog-songs"></div>
             </div>
         );
