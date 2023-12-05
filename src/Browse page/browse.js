@@ -102,11 +102,17 @@ class Browse extends Component{
                     };
                 };
                 img.src = _item.image_url;
-                img.className = "image-song";        
+                img.className = "image-song"; 
                 divCardFront.appendChild(img);
-                divCardFront.innerHTML += `
-                    <p>${_item.name}</p>
-                `;
+                const link = document.createElement("a");
+                link.className = "link";
+                link.target = "_blank";
+                link.href = _item.permalink;
+                link.innerHTML = _item.name;
+                link.onclick = (e) => {
+                    e.stopPropagation();
+                };
+                divCardFront.appendChild(link);
                 for(const i in _item["traits"]){
                     if(_item["traits"][i].trait_type === "Artist"){
                         divCardFront.innerHTML += `
