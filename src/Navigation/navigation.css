@@ -82,14 +82,14 @@ button:hover {
     cursor: pointer;
 }
 
-a{
+.a{
     position: relative;
     text-decoration: none;
     color: #a0a0a0;
     letter-spacing: 0.5px;
     padding: 0 10px;
 }
-a:after{
+.a:after{
     content: "";
     position: absolute;
     background-color: #fff;
@@ -100,10 +100,10 @@ a:after{
     transition: 0.3s;
 }
 
-a:hover{
+.a:hover{
     color: #ffffff;
 }
 
-a:hover:after{
+.a:hover:after{
     width: 100%;
 }

@@ -9,10 +9,14 @@ class Navigation extends Component{
                     <nav>
                         <h2 className="logo">The Harmonic<span>Vault</span></h2>
                         <ul>
-                            <li><a href="#/home">Home</a></li>
-                            <li><a href="#/create">Create</a></li>
-                            <li><a href="#/browse">Browse</a></li>
-                            <li><a href="#/learn">Learn</a></li>
+                            <li><a href="#/home"
+                                className="a">Home</a></li>
+                            <li><a href="#/create"
+                                className="a">Create</a></li>
+                            <li><a href="#/browse"
+                                className="a">Browse</a></li>
+                            <li><a href="#/learn"
+                                className="a">Learn</a></li>
                         </ul>
                         <button type="button">Sign In</button>
                     </nav>
