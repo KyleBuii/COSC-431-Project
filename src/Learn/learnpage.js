@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
 class LearnPage extends Component {
+  signInButtonClick = () => {
+    // Add your logic for the button click here
+    console.log('Sign In button clicked!');
+  };
 
   render() {
     return (
@@ -56,6 +60,7 @@ class LearnPage extends Component {
                 font-weight: bold;
                 font-size: 15px;
                 transition: .4s;
+                margin-right: 10px; /* Added margin for better spacing */
               }
 
               button:hover {
@@ -89,10 +94,18 @@ class LearnPage extends Component {
             </section>
 
             <section>
-              <h2>Where do I start?</h2>
-              <p>Right here. If you click this button below, you can connect your crypto wallet and begin browsing!</p>
+              <h2>Where can I learn more?</h2>
+              <p>Below are additonal resources to learn more about NFTS!</p>
               <br />
-              <button type="button" onClick={this.signInButtonClick}>Sign In</button>
+              <a href="https://www.forbes.com/advisor/investing/cryptocurrency/nft-non-fungible-token/" target="_blank" rel="noopener noreferrer">
+                Forbes-NFTs <br /> 
+              </a>
+              <a href="https://www.coindesk.com/learn/what-are-nfts-and-how-do-they-work/" target="_blank" rel="noopener noreferrer">
+                Coindesk NFTs <br /> 
+              </a>
+              <a href="https://decrypt.co/resources/non-fungible-tokens-nfts-explained-guide-learn-blockchain" target="_blank" rel="noopener noreferrer">
+                Decrypt NFTs <br /> 
+              </a>
             </section>
           </main>
         </body>
