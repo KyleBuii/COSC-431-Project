@@ -4,7 +4,7 @@ import abi from "../MusicContract.json";
 import Navbar from "../Navigation/navigation";
 const { ethers } = require("ethers");
 const contractAddress = "0x1F74fF79Da22af819de55fEcBddc4eEDbb35eC10";
-  const contractABI = abi.abi;
+  const MyABI = abi.abi;
 class Create extends Component {
   constructor(props) {
     super(props);
