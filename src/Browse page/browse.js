@@ -222,7 +222,6 @@ class Browse extends Component{
     render(){
         return(
             <div className="catalog">
-                <div id="panel-featured"></div>
                 <h1 className="label-section">Albums</h1>
                 <div id="catalog-albums"></div>
                 <div className="label-section with-button">

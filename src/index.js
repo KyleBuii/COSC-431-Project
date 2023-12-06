@@ -6,6 +6,7 @@ import { Route, Routes, HashRouter } from 'react-router-dom';
 import Navigation from './Navigation/navigation';
 import Home from './Homepage/home';
 import Browse from './Browse page/browse';
+import Create from './Create page/create';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,7 +19,7 @@ root.render(
                 <Route path="/home"
                     element={<Home/>}></Route>
                 <Route path="/create"
-                    element={<></>}></Route>
+                    element={<Create/>}></Route>
                 <Route path="/browse"
                     element={<Browse/>}></Route>
                 <Route path="/learn"
