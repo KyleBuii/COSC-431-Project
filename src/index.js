@@ -7,6 +7,7 @@ import Navigation from './Navigation/navigation';
 import Home from './Homepage/home';
 import Browse from './Browse page/browse';
 import Create from './Create page/create';
+import LearnPage from './Learn/learnpage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,7 +24,7 @@ root.render(
                 <Route path="/browse"
                     element={<Browse/>}></Route>
                 <Route path="/learn"
-                    element={<></>}></Route>
+                    element={<LearnPage/>}></Route>
             </Routes>
         </HashRouter>
     </React.StrictMode>
