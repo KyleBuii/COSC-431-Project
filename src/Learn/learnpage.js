@@ -67,6 +67,18 @@ class LearnPage extends Component {
                 transform: scale(1.3);
                 cursor: pointer;
               }
+              a{
+                line-height: 1.6;
+                color: #918c8c;
+
+              }
+              a:hover{
+                color: white;
+                font-size: 20px;
+              }
+              a:active{
+                color: lightblue;
+              }
             `}
           </style>
         </head>
