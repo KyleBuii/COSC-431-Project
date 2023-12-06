@@ -1,5 +1,10 @@
+// renamed file
 import React, { Component } from "react";
-
+import abi from "../MusicContract.json";
+import Navbar from "../Navigation/navigation";
+const { ethers } = require("ethers");
+const contractAddress = "0x1F74fF79Da22af819de55fEcBddc4eEDbb35eC10";
+  const contractABI = abi.abi;
 class Create extends Component {
   constructor(props) {
     super(props);
@@ -58,6 +63,7 @@ class Create extends Component {
   render() {
     return (
       <div>
+        <Navbar></Navbar>
         <title>The Harmonic Vault</title>
         <link rel="stylesheet" href="learn.css" />
 
