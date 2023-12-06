@@ -1,11 +1,13 @@
-// renamed file
 import React, { Component } from "react";
-import abi from "../MusicContract.json";
 import Navbar from "../Navigation/navigation";
-const { ethers } = require("ethers");
+import MyABI from "../MusicContract.json";
+import { ethers } from "ethers";
+import { providers } from "ethers";
+
 const contractAddress = "0x1F74fF79Da22af819de55fEcBddc4eEDbb35eC10";
-  const MyABI = abi.abi;
+
 class Create extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -85,6 +87,9 @@ class Create extends Component {
               text-align: center;
               padding: 20px;
               background-color: #291763;
+              margin-top: 300px;
+              line-height: 1.6;
+              color: #918c8c;
             }
 
             main {
@@ -111,6 +116,7 @@ class Create extends Component {
               font-weight: bold;
               font-size: 15px;
               transition: .4s;
+              
             }
 
             button:hover {
@@ -120,8 +126,10 @@ class Create extends Component {
           `}
         </style>
 
-        <header>Current Account: {this.state.currentAccount}</header>
-        <button>Create</button>
+        <header>Current Account: {this.state.currentAccount}
+        <br></br><br></br><button >Create</button>
+</header>
+        
 
         {/* Your other components or UI elements go here */}
       </div>
