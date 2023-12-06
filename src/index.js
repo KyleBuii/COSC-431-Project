@@ -6,7 +6,7 @@ import { Route, Routes, HashRouter } from 'react-router-dom';
 import Navigation from './Navigation/navigation';
 import Home from './Homepage/home';
 import Browse from './Browse page/browse';
-import Create from './Create page/create';
+import Create from './CreatePage/create';
 import LearnPage from './Learn/learnpage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
