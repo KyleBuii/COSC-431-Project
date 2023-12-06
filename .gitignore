@@ -8,6 +8,9 @@
 # api keys
 .env
 
+# hardhat
+hardhat.config.js
+
 # testing
 /coverage
 
