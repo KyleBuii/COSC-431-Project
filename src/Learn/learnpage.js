@@ -98,13 +98,13 @@ class LearnPage extends Component {
               <p>Below are additonal resources to learn more about NFTS!</p>
               <br />
               <a href="https://www.forbes.com/advisor/investing/cryptocurrency/nft-non-fungible-token/" target="_blank" rel="noopener noreferrer">
-                Forbes-NFTs <br /> Forbes
+                Forbes-NFTs <br /> 
               </a>
               <a href="https://www.coindesk.com/learn/what-are-nfts-and-how-do-they-work/" target="_blank" rel="noopener noreferrer">
-                Coindesk-NFTs <br /> Coindesk
+                Coindesk NFTs <br /> 
               </a>
               <a href="https://decrypt.co/resources/non-fungible-tokens-nfts-explained-guide-learn-blockchain" target="_blank" rel="noopener noreferrer">
-                Decrypt-NFTs <br /> Decrypt
+                Decrypt NFTs <br /> 
               </a>
             </section>
           </main>
