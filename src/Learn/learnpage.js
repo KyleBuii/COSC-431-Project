@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 class LearnPage extends Component {
-  signInButtonClick = () => {
-    // Add your logic for the button click here
-    console.log('Sign In button clicked!');
-  };
 
   render() {
     return (
